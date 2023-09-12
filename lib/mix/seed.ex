@@ -20,6 +20,8 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "Create TABLE fruits (id SERIAL, name VARCHAR(255) NOT NULL, tastiness INTEGER NOT NULL)", [], pool: DBConnection.ConnectionPool)
   end
 
+
+  #test
   defp seed_data() do
     IO.puts("Seeding data")
     Postgrex.query!(DB, "INSERT INTO fruits(name, tastiness) VALUES($1, $2)", ["Apple", 5], pool: DBConnection.ConnectionPool)
