@@ -1,0 +1,66 @@
+body {
+	background-color: #ffdab9;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #FFEDDC;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.tony-logo{
+	width: 600px;
+	height: 200px;
+	margin: 50px;
+	transition: 1.5s;
+}
+
+.menu-container{
+	background-color: #997562;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 820px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	gap: 20px;
+}
+
+.pizza-container{
+	display: flex;
+	flex-direction: row;
+	width: 400px;
+	height: 300px;
+	box-sizing: border-box;
+	border: 5px solid #CCA88E;
+	padding: 10px;
+	border-radius: 50px;
+}
+
+.pizza-info{
+	margin-left: 30px;
+	width: 250px;
+
+	padding: 10px;
+}
+
+.ingredients{
+	padding-left: 30px;
+}
+
+.pizza-container:hover .image-test{
+	width: 150px;
+	height: 150px;
+}
+.tony-logo:hover{
+	transform: rotate3d(10, 10, 10, 360deg);
+}
+
+.image-test{
+	width: 100px;
+	height: 100px;
+	transition: 0.3s;
+}
