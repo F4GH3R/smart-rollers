@@ -17,12 +17,12 @@
 <% end %>
 
 
-	<%= for pizza <- pizzas do %>
+	<%= for ingredient <- ingredients do %>
     
 	<ul>
 		<li>
-			<%=pizza.ingredient%>	
-		</li>
+			<%=ingredient.ingredient%>	
+		</li>	
 
 	</ul>
   <% end %>
