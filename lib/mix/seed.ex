@@ -98,9 +98,9 @@ defmodule Mix.Tasks.Seed do
     pizzas_ingredients_rel(8, 1); pizzas_ingredients_rel(8, 2); pizzas_ingredients_rel(8, 14); pizzas_ingredients_rel(8, 11); pizzas_ingredients_rel(8, 15)
 
 
-    var = Postgrex.query!(DB, "SELECT pizzas_ingredients_rel.pizza_id, pizzas_ingredients_rel.ing_id, pizzas.name, ingredients.name FROM pizzas INNER JOIN pizzas_ingredients_rel ON pizzas_ingredients_rel.pizza_id=pizzas.id INNER JOIN ingredients ON ingredients.id=pizzas_ingredients_rel.ing_id", [], pool: DBConnection.ConnectionPool).rows
-    var = Pluggy.Fruit.to_struct_test(var)
-    IO.inspect(var)
+    # var = Postgrex.query!(DB, "SELECT pizzas_ingredients_rel.pizza_id, pizzas_ingredients_rel.ing_id, pizzas.name, ingredients.name FROM pizzas INNER JOIN pizzas_ingredients_rel ON pizzas_ingredients_rel.pizza_id=pizzas.id INNER JOIN ingredients ON ingredients.id=pizzas_ingredients_rel.ing_id", [], pool: DBConnection.ConnectionPool).rows
+    # var = Pluggy.Fruit.to_struct_test(var)
+    # IO.inspect(var)
 
     #order 1
     orders_ingredients_rel(1,1)
