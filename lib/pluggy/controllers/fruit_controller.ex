@@ -16,19 +16,6 @@
 #         _ -> User.get(session_user)
 #       end
 
-<<<<<<< Updated upstream
-    send_resp(conn, 200, render("fruits/index", pizzas: Fruit.all(), user: current_user))
-  end
-=======
-
-
-#      send_resp(conn, 200, render("fruits/index", pizzas: Fruit.all(), user: current_user))
-
-#     # send_resp(conn, 200, render("fruits/index", ingredients: Fruit.all_ingredients(), user: current_user))
-
-#   end
->>>>>>> Stashed changes
-
 #   #render använder eex
 #   def new(conn), do: send_resp(conn, 200, render("fruits/new", []))
 #   def show(conn, id), do: send_resp(conn, 200, render("fruits/show", fruit: Fruit.get(id)))

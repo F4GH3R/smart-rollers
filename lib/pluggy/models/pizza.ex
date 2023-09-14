@@ -27,7 +27,9 @@ defmodule Pluggy.Pizza do
 
     # Execute the SQL query
     result = Postgrex.query!(DB, query, [], pool: DBConnection.ConnectionPool).rows
+    #IO.inspect(result)
     result |> to_struct_list |> IO.inspect()
+
 
    #map_pizza_id = get_pizza_id()
     #result |> grouped_results() |> pizza_list(map_pizza_id)
@@ -107,6 +109,7 @@ defmodule Pluggy.Pizza do
     |> Map.values()
     |> Enum.map(fn rows -> to_struct(rows) end)
     # |> IO.inspect
+
 
   end
 

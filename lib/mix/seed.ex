@@ -29,17 +29,21 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "Create TABLE fruits (id SERIAL, name VARCHAR(255) NOT NULL, tastiness INTEGER NOT NULL)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE pizzas (id SERIAL, name VARCHAR(255) NOT NULL)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE ingredients (id SERIAL, name VARCHAR(255) NOT NULL)", [], pool: DBConnection.ConnectionPool)
-    Postgrex.query!(DB, "Create TABLE orders (id SERIAL, user_id INTEGER, pizza_name VARCHAR(255) NOT NULL)", [], pool: DBConnection.ConnectionPool)
+    Postgrex.query!(DB, "Create TABLE orders (id SERIAL)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE pizzas_ingredients_rel (id SERIAL, pizza_id INTEGER, ing_id INTEGER)", [], pool: DBConnection.ConnectionPool)
-    Postgrex.query!(DB, "Create TABLE orders_ingredients_rel (id SERIAL, ing_id INTEGER, order_id INTEGER, amount INTEGER)", [], pool: DBConnection.ConnectionPool)
+    Postgrex.query!(DB, "Create TABLE orders_ingredients_rel (id SERIAL, ing_id INTEGER, order_id INTEGER, pizza_amount INTEGER, pizza_id_unique INTEGER)", [], pool: DBConnection.ConnectionPool)
   end
 
   def pizzas_ingredients_rel(pizza_id, ing_id) do
     Postgrex.query!(DB, "INSERT INTO pizzas_ingredients_rel(pizza_id, ing_id) VALUES($1, $2)", [pizza_id, ing_id], pool: DBConnection.ConnectionPool)
   end
 
-  def orders_ingredients_rel(order_id, ing_id) do
-    Postgrex.query!(DB, "INSERT INTO orders_ingredients_rel(order_id, ing_id) VALUES($1, $2)", [order_id, ing_id], pool: DBConnection.ConnectionPool)
+  def orders_ingredients_rel(order_id, ing_id, pizza_amount, pizza_id_unique) do
+    Postgrex.query!(DB, "INSERT INTO orders_ingredients_rel(order_id, ing_id, pizza_amount, pizza_id_unique) VALUES($1, $2, $3, $4)", [order_id, ing_id, pizza_amount, pizza_id_unique], pool: DBConnection.ConnectionPool)
+  end
+
+  def orders_add(id) do
+    Postgrex.query!(DB, "INSERT INTO orders(id) VALUES($1)", [id], pool: DBConnection.ConnectionPool)
   end
 
 
@@ -102,10 +106,18 @@ defmodule Mix.Tasks.Seed do
     # var = Pluggy.Fruit.to_struct_test(var)
     # IO.inspect(var)
 
+
+
     #order 1
-    orders_ingredients_rel(1,1)
-    orders_ingredients_rel(1,2)
-    orders_ingredients_rel(1,3)
+    orders_ingredients_rel(1,1,1,2)
+    orders_ingredients_rel(1,2,1,2)
+    orders_ingredients_rel(1,3,1,2)
+    orders_ingredients_rel(1,1,2,1)
+    orders_ingredients_rel(2,1,1,3)
+
+    orders_add(1)
+    orders_add(2)
+    orders_add(3)
   end
 
 end
