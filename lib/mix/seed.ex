@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "Create TABLE fruits (id SERIAL, name VARCHAR(255) NOT NULL, tastiness INTEGER NOT NULL)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE pizzas (id SERIAL, name VARCHAR(255) NOT NULL)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE ingredients (id SERIAL, name VARCHAR(255) NOT NULL)", [], pool: DBConnection.ConnectionPool)
-    Postgrex.query!(DB, "Create TABLE orders (id SERIAL)", [], pool: DBConnection.ConnectionPool)
+    Postgrex.query!(DB, "Create TABLE orders (id SERIAL, test INTEGER)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE pizzas_ingredients_rel (id SERIAL, pizza_id INTEGER, ing_id INTEGER)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE orders_ingredients_rel (id SERIAL, ing_id INTEGER, order_id INTEGER, pizza_amount INTEGER, pizza_id_unique INTEGER)", [], pool: DBConnection.ConnectionPool)
   end

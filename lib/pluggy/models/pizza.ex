@@ -35,7 +35,18 @@ defmodule Pluggy.Pizza do
     #result |> grouped_results() |> pizza_list(map_pizza_id)
   end
 
+  def get_by_id(pizza_id) do
+    query = """
+      SELECT pizzas.name, pizzas_ingredients_rel.pizza_id, pizzas_ingredients_rel.ing_id, ingredients.name
+      FROM pizzas
+      INNER JOIN pizzas_ingredients_rel ON pizzas_ingredients_rel.pizza_id = pizzas.id
+      INNER JOIN ingredients ON ingredients.id = pizzas_ingredients_rel.ing_id
+      WHERE pizzas.id = $1
+    """
 
+    result = Postgrex.query!(DB, query, [pizza_id] , pool: DBConnection.ConnectionPool).rows
+    result |> to_struct |> IO.inspect()
+  end
 
   # def all_ingredients do
     #   Postgrex.query!(DB, "SELECT DISTINCT name, id FROM ingredients" , [], pool: DBConnection.ConnectionPool).rows

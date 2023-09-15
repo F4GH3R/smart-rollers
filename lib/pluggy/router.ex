@@ -37,6 +37,7 @@ defmodule Pluggy.Router do
   get("/pizzas", do: PizzaController.index(conn))
   get("/orders", do: OrderController.index(conn))
   get("/place_order", do: PlaceOrderController.index(conn))
+  get("/place_order/:id", do: PlaceOrderController.index(conn, id))
 
   # post("/fruits", do: FruitController.create(conn, conn.body_params))
 
