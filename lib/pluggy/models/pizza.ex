@@ -109,8 +109,6 @@ defmodule Pluggy.Pizza do
     |> Map.values()
     |> Enum.map(fn rows -> to_struct(rows) end)
     # |> IO.inspect
-
-
   end
 
 

@@ -17,7 +17,6 @@ defmodule Pluggy.Order do
     result |> to_struct_list |> IO.inspect()
   end
 
-
   def to_struct(rows) do
     rows
     |> Enum.reduce(%Order{}, fn([order_id, amount, pizza_id, ingredient_name], struct) -> %{struct | order_id: order_id, pizza_amount: amount, pizza_id: pizza_id, ingredients: [ingredient_name| struct.ingredients] } end )
@@ -26,7 +25,7 @@ defmodule Pluggy.Order do
 
   def to_struct_list(rows) do
     rows
-    |> Enum.group_by(fn [id, _, id2, _] -> [id, id2] end)
+    |> Enum.group_by(fn [order_id, _, pizza_id, _] -> [order_id, pizza_id] end)
     |> IO.inspect
     |> Map.values()
     |> IO.inspect
