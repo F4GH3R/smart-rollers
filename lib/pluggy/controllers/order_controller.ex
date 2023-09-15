@@ -18,7 +18,7 @@ defmodule Pluggy.OrderController do
 
 
 
-     send_resp(conn, 200, render("orders/index", pizzas: Order.all(), user: current_user))
+     send_resp(conn, 200, render("orders/index", orders: Order.all(), user: current_user))
 
     # send_resp(conn, 200, render("fruits/index", ingredients: Fruit.all_ingredients(), user: current_user))
 

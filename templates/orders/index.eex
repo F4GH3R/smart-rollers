@@ -1,0 +1,21 @@
+<div class="menu-container" >
+	<%= for order <- orders do %>
+	<div class="pizza-container">
+		<div class="pizza-info">
+			<h2>Order: <%=order.order_id%></h2>
+                <div class="order_pizza">
+                    <h3>Pizza: <%=order.pizza_id%></h3>
+                </div>
+            
+            <div class="ingredients">
+				<%= for ingredient <- order.ingredients do %>
+					<div>
+						<%=ingredient%>
+					</div>
+				<% end %>	
+			</div>
+		</div>	
+
+	</div>
+  <% end %>
+</div>
