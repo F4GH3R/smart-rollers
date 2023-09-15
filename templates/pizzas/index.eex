@@ -1,4 +1,6 @@
-<h1>Fruits.index (/fruits)</h1>
+	<div class>
+		<img src="../../images/tonys-pizza-logo.svg" alt="" class="tony-logo">
+	</div>
 
 <%= if user do %>
 	<form action="/users/logout" method="post">
@@ -16,27 +18,29 @@
 -->
 <% end %>
 
-
+<div class="menu-container" >
 	<%= for pizza <- pizzas do %>
-	<ul>
-		<li>
-			<h2>
-				<%=pizza.name%>	
-			</h2>
-		<ul>
-			<%= for ingredient <- pizza.ingredients do %>
-				<li>
-					<%=ingredient%>
-				</li>
-			<% end %>	
-		</ul>
-		</li>	
+	<div class="pizza-container">
 
-	</ul>
+		<div>
+			<img src="../../images/capricciosa.svg" alt="" class="image-test">
+		</div>
+
+		<div class="pizza-info">
+			<h2><%=pizza.name%></h2>
+			<div class="ingredients">
+				<%= for ingredient <- pizza.ingredients do %>
+					<div>
+						<%=ingredient%>
+					</div>
+				<% end %>	
+			</div>
+			<div class="buttons-container">
+				<a href="" class="anpassa">Anpassa</a>
+    			<a href="" class="kop">Kop</a>
+			</div>
+		</div>	
+
+	</div>
   <% end %>
-
-
-
-<a href="/fruits/new">Add new fruit</a>
-
-
+</div>
