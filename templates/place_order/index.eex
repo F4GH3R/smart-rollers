@@ -7,7 +7,7 @@
 
 <div>
         <h1>Place Order</h1>
-        <form action="/index" method="POST">
+        <form action="/place_order/submit" method="POST">
             <div>
 			    <img src="../../images/<%=fetched_pizza.id%>.svg" alt="" class="image-test">
 		    </div>
@@ -15,10 +15,11 @@
             <div>You <div style="opacity: 0.2" > probably</div> clicked on a <%=fetched_pizza.name%> link</div>
             <%=for ingredient <- ingredients do%>
                 <%=if Enum.find(fetched_pizza.ingredients, fn ing -> ing == ingredient.ing_name end) do%>
-                    <input type="checkbox" name="<%=ingredient.ing_name%> value="Ingredient" autocomplete="off" checked>
+                    <input id=<%=ingredient.id%> type="checkbox" name="<%=ingredient.id%>" value="<%=ingredient.id%>" autocomplete="off" checked>
                     <label for="ingredient<%=ingredient.id%>"> <%=ingredient.ing_name%></label><br>
                 <%else%>
-                    <input type="checkbox" name="<%=ingredient.ing_name%> value="Ingredient" autocomplete="off">
+                    <input id=<%=ingredient.id%> type="checkbox" name="<%=ingredient.id%>" value="<%=ingredient.id%>" autocomplete="off">
+
                     <label for="ingredient<%=ingredient.id%>"> <%=ingredient.ing_name%></label><br>
                 <%end%>
 

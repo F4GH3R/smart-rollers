@@ -3,6 +3,7 @@
 	<div class="pizza-container">
 		<div class="pizza-info">
 			<h2>Order: <%=order.order_id%></h2>
+        
                 <div class="order_pizza">
                     <h3>Pizza: <%=order.pizza_id%></h3>
                 </div>

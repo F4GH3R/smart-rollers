@@ -49,6 +49,8 @@ defmodule Pluggy.Router do
 
   post("/users/login", do: UserController.login(conn, conn.body_params))
   post("/users/logout", do: UserController.logout(conn))
+  post("/place_order/submit", do: PlaceOrderController.submit(conn, conn.body_params))
+
 
   match _ do
     send_resp(conn, 404, "oops")

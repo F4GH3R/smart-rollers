@@ -21,4 +21,14 @@ defmodule Pluggy.PlaceOrderController do
      send_resp(conn, 200, render("place_order/index", ingredients: PlaceOrder.all(), fetched_pizza: fetched_pizza, user: current_user))
 
   end
+
+  def submit(conn, params) do
+    PlaceOrder.send_order(params)
+    redirect(conn, "/pizzas")
+  end
+
+  defp redirect(conn, url) do
+    Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(303, "")
+  end
+
 end

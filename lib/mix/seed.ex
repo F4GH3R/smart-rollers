@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "Create TABLE ingredients (id SERIAL, name VARCHAR(255) NOT NULL)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE orders (id SERIAL, test INTEGER)", [], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "Create TABLE pizzas_ingredients_rel (id SERIAL, pizza_id INTEGER, ing_id INTEGER)", [], pool: DBConnection.ConnectionPool)
-    Postgrex.query!(DB, "Create TABLE orders_ingredients_rel (id SERIAL, ing_id INTEGER, order_id INTEGER, pizza_amount INTEGER, pizza_id_unique INTEGER)", [], pool: DBConnection.ConnectionPool)
+    Postgrex.query!(DB, "Create TABLE orders_ingredients_rel (id SERIAL, order_id INTEGER, ing_id INTEGER, pizza_amount INTEGER, pizza_id_unique INTEGER)", [], pool: DBConnection.ConnectionPool)
   end
 
   def pizzas_ingredients_rel(pizza_id, ing_id) do
@@ -48,8 +48,22 @@ defmodule Mix.Tasks.Seed do
 
 
 
+
+
   #tests
   defp seed_data() do
+    #order 1
+    orders_ingredients_rel(1,1,1,2)
+    orders_ingredients_rel(1,2,1,2)
+    orders_ingredients_rel(1,3,1,2)
+    orders_ingredients_rel(1,1,2,1)
+    orders_ingredients_rel(2,1,1,3)
+
+    orders_add(1)
+    orders_add(2)
+    orders_add(3)
+
+
     IO.puts("Seeding data")
     Postgrex.query!(DB, "INSERT INTO fruits(name, tastiness) VALUES($1, $2)", ["Apple", 5], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "INSERT INTO fruits(name, tastiness) VALUES($1, $2)", ["Pear", 4], pool: DBConnection.ConnectionPool)
@@ -70,6 +84,9 @@ defmodule Mix.Tasks.Seed do
     Postgrex.query!(DB, "INSERT INTO ingredients(name) VALUES($1)", ["Zucchini"], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "INSERT INTO ingredients(name) VALUES($1)", ["Salami"], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "INSERT INTO ingredients(name) VALUES($1)", ["Chili"], pool: DBConnection.ConnectionPool)
+    Postgrex.query!(DB, "INSERT INTO ingredients(name) VALUES($1)", ["Family Pizza"], pool: DBConnection.ConnectionPool)
+    Postgrex.query!(DB, "INSERT INTO ingredients(name) VALUES($1)", ["Glutenfree"], pool: DBConnection.ConnectionPool)
+
 
     Postgrex.query!(DB, "INSERT INTO pizzas(name) VALUES($1)", ["Margherita"], pool: DBConnection.ConnectionPool)
     Postgrex.query!(DB, "INSERT INTO pizzas(name) VALUES($1)", ["Marinara"], pool: DBConnection.ConnectionPool)
@@ -108,16 +125,7 @@ defmodule Mix.Tasks.Seed do
 
 
 
-    #order 1
-    orders_ingredients_rel(1,1,1,2)
-    orders_ingredients_rel(1,2,1,2)
-    orders_ingredients_rel(1,3,1,2)
-    orders_ingredients_rel(1,1,2,1)
-    orders_ingredients_rel(2,1,1,3)
 
-    orders_add(1)
-    orders_add(2)
-    orders_add(3)
   end
 
 end
