@@ -16,12 +16,17 @@ defmodule Pluggy.OrderController do
         _ -> User.get(session_user)
       end
 
-
-
      send_resp(conn, 200, render("orders/index", orders: Order.all(), user: current_user))
 
     # send_resp(conn, 200, render("fruits/index", ingredients: Fruit.all_ingredients(), user: current_user))
 
+  end
+
+  def delete(conn, params) do
+    Order.delete(params)
+    |>
+    IO.inspect()
+    redirect(conn, "/orders")
   end
 
   #render använder eex
@@ -49,7 +54,7 @@ defmodule Pluggy.OrderController do
   #   redirect(conn, "/fruits")
   # end
 
-  # defp redirect(conn, url) do
-  #   Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(303, "")
-  # end
+  defp redirect(conn, url) do
+    Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(303, "")
+  end
 end

@@ -48,4 +48,29 @@ defmodule Pluggy.Order do
 
 
 
+
+  def delete(params) do
+        IO.inspect(params)
+
+        #%{"1" => "Completed"}
+
+        #["1"]
+
+        # >  1 list
+
+        pizza_id = Map.keys(params)
+        |>
+        IO.inspect()
+        |>
+        List.first()
+        |>
+        IO.inspect()
+
+
+
+        Postgrex.query!(DB, "DELETE FROM orders_ingredients_rel WHERE pizza_id_unique = #{pizza_id}", [],
+          pool: DBConnection.ConnectionPool
+        )
+  end
+
 end

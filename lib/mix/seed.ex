@@ -53,10 +53,10 @@ defmodule Mix.Tasks.Seed do
   #tests
   defp seed_data() do
     #order 1
+    orders_ingredients_rel(1,1,2,1)
     orders_ingredients_rel(1,1,1,2)
     orders_ingredients_rel(1,2,1,2)
     orders_ingredients_rel(1,3,1,2)
-    orders_ingredients_rel(1,1,2,1)
     orders_ingredients_rel(2,1,1,3)
 
     orders_add(1)
